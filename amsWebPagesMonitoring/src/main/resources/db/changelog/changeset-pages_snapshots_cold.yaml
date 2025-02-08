@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-cold-storage
+      author: system
+      changes:
+        - createTable:
+            tableName: pages_snapshots_cold
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: url
+                  type: VARCHAR(2048)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: snapshot_date
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: content
+                  type: TEXT
+        - createIndex:
+            tableName: pages_snapshots_cold
+            indexName: idx_pages_snapshots_cold_url_date
+            columns:
+              - column:
+                  name: url
+              - column:
+                  name: snapshot_date

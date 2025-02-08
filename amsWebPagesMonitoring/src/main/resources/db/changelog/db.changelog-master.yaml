@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changeset-monitoring_history.yaml
+  - include:
+      file: db/changelog/changeset-pages_snapshots_cold.yaml

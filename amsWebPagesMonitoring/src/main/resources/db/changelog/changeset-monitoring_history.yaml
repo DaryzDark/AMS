@@ -1,0 +1,45 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-monitoring-history
+      author: system
+      changes:
+        - createTable:
+            tableName: monitoring_hisory
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+
+              - column:
+                  name: change_date
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: changed_urls
+                  type: JSONB
+                  constraints:
+                    nullable: true
+
+              - column:
+                  name: deleted_urls
+                  type: JSONB
+                  constraints:
+                    nullable: true
+
+              - column:
+                  name: added_urls
+                  type: JSONB
+                  constraints:
+                    nullable: true
+
+        - createIndex:
+            tableName: monitoring_hisory
+            indexName: idx_monitoring_history_date
+            columns:
+              - column:
+                  name: change_date
